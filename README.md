@@ -58,7 +58,7 @@ The `database/` folder is generated automatically when the ETL pipeline runs and
 
 ## Data Model
 
-The project uses five main tables:
+The project uses five main tables.
 
 ### users
 
@@ -137,13 +137,15 @@ The `extract.py` module reads raw CSV files from `data/raw/` and returns them as
 
 The `transform.py` module applies data cleaning and validation rules:
 
-* removes duplicates by primary keys
+* validates required tables
 * validates required columns
+* removes rows with missing values in required fields
+* removes duplicates by primary keys
 * converts ID columns to integers
 * converts date columns to datetime
 * converts numeric columns safely
 * normalizes text status values
-* filters invalid statuses
+* filters invalid categorical values
 * filters invalid numeric values
 * resets DataFrame indexes after cleaning
 
@@ -174,6 +176,8 @@ pip install -r requirements.txt
 
 ### 3. Run the full ETL pipeline
 
+The repository already contains synthetic CSV files in `data/raw/`, so the ETL pipeline can be run immediately.
+
 ```bash
 python src/pipeline.py
 ```
@@ -198,6 +202,32 @@ python src/run_sql_queries.py
 ```
 
 This script executes key analytical queries and prints the results to the console.
+
+## Optional: Regenerate Raw Data
+
+The repository already contains synthetic CSV files in `data/raw/`.
+
+If you want to regenerate the raw data from scratch, run the data generation scripts in the following order:
+
+```bash
+python src/generate_users.py
+python src/generate_courses.py
+python src/generate_leads.py
+python src/generate_payments.py
+python src/generate_lessons.py
+```
+
+The order is important because some tables depend on previously generated files:
+
+* `leads.csv` depends on `users.csv` and `courses.csv`
+* `payments.csv` depends on `leads.csv` and `courses.csv`
+* `lessons.csv` depends on `payments.csv` and `courses.csv`
+
+After regenerating the raw CSV files, run the full ETL pipeline again:
+
+```bash
+python src/pipeline.py
+```
 
 ## SQL Analysis
 
@@ -246,7 +276,7 @@ The project calculates several important business metrics:
 ## Example Workflow
 
 ```text
-Raw CSV files
+Synthetic CSV data
    ↓
 extract.py
    ↓
@@ -270,6 +300,7 @@ This project demonstrates practical skills required for junior Data Engineer, ET
 * cleaning and validating data with pandas
 * loading structured data into SQLite
 * writing analytical SQL queries
+* using CTEs, JOINs, aggregation and conversion metrics
 * calculating business metrics
 * organizing a data project for GitHub
 
