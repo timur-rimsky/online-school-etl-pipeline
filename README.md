@@ -10,6 +10,18 @@ The project simulates an online education platform with users, courses, leads, p
 
 The main goal is to show how raw data can be transformed into a structured database and then used for analytical reporting.
 
+## Skills demonstrated
+
+* Built a modular ETL pipeline using Python scripts.
+* Extracted raw CSV data from multiple source tables.
+* Cleaned and validated users, courses, leads, payments and lessons data.
+* Removed duplicates and invalid records.
+* Standardized data types, dates, statuses and numeric values.
+* Loaded transformed data into a SQLite database.
+* Wrote analytical SQL queries using JOIN, LEFT JOIN, GROUP BY, CTE, COALESCE and NULLIF.
+* Calculated business metrics: revenue, course demand, lead conversion rate and lesson attendance rate.
+* Organized the project with separate `src`, `sql`, `data/raw` and `data/processed` layers.
+
 ## Tech Stack
 
 * Python
