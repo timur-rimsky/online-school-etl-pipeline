@@ -1,0 +1,7 @@
+course_id,course_name,category,course_price,duration_weeks
+1,Python Basics,Programming,12900,8
+2,SQL for Data Analysis,Data Analytics,9900,6
+3,Machine Learning Starter,Machine Learning,19900,10
+4,Data Engineering Basics,Data Engineering,21900,12
+5,Power BI Fundamentals,BI,14900,7
+6,AI Tools for Business,Artificial Intelligence,17900,8
