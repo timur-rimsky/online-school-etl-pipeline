@@ -48,7 +48,6 @@ online-school-etl-pipeline/
 │   ├── pipeline.py
 │   └── run_sql_queries.py
 │
-├── notebooks/
 ├── README.md
 ├── requirements.txt
 └── .gitignore
